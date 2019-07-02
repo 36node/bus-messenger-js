@@ -1,0 +1,29 @@
+version: "2"
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_PORT: 9093
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://localhost:9092,SSL://localhost:9093"
+      KAFKA_LISTENERS: "PLAINTEXT://:9092,SSL://:9093"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      # - LOG4J_ROOTLOGGER=INFO, stdout
+      # - LOG4J_LOGGER_KAFKA=INFO,stdout
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  kafkaweb:
+    image: sourcelaborg/kafka-webview
+    ports:
+      - "8080:8080"

@@ -1,0 +1,68 @@
+{
+  "name": "@36node/bus-messenger",
+  "version": "0.0.0",
+  "description": "Bus messenger sdk for javascript.",
+  "repository": {
+    "url": "36node/bus-messenger",
+    "type": "git"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "template": "sdk",
+  "files": [
+    "bin",
+    "dist",
+    "mock",
+    "typings"
+  ],
+  "config-overrides-path": "node_modules/@36node/sketch/config-overrides",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "typings": "typings/index.d.ts",
+  "scripts": {
+    "build": "sketch build --external stream,node-rdkafka,dev-null",
+    "format": "prettier --trailing-comma es5 --write 'src/**/*.js'",
+    "lint": "sketch lint src",
+    "preinstall": "echo 'please export $CPPFLAGS $LDFLAGS in readme'",
+    "release": "standard-version",
+    "test": "sketch test --env=node"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS",
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run lint && CI=true NODE_ENV=test npm run test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run format",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "commander": "^2.19.0",
+    "dev-null": "^0.1.1",
+    "node-rdkafka": "^2.7.0"
+  },
+  "devDependencies": {
+    "@36node/eslint-config": "^0.6.1",
+    "@36node/sketch": "^0.11.12",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@types/jest": "^24.0.11",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "1.17.1",
+    "standard-version": "^6.0.1",
+    "stream-mock": "^2.0.3"
+  },
+  "gitHead": "957402b11f2774d8fbfdfa56cd702efbc9b9b02b"
+}
