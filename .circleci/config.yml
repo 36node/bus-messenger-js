@@ -42,7 +42,7 @@ jobs:
           background: true
       - run:
           name: Integration Test
-          command: NODE_ENV=test yarn test:int --coverage
+          command: NODE_ENV=test yarn test --coverage
       - run:
           name: Upload Coverage
           command: bash <(curl -s https://codecov.io/bash)
