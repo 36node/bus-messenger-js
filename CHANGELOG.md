@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/36node/bus-messenger/compare/v0.0.3...v0.0.4) (2019-07-05)
+
+
+### Bug Fixes
+
+* test int ([97c2b99](https://github.com/36node/bus-messenger/commit/97c2b99))
+
+
+
 ### [0.0.3](https://github.com/36node/bus-messenger/compare/v0.0.2...v0.0.3) (2019-07-05)
 
 
