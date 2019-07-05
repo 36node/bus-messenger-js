@@ -34,3 +34,9 @@ export class TBoxStation extends Station {
     return "tbox station";
   }
 }
+
+export class ExceptionStation extends Station {
+  get name() {
+    return "tbox station";
+  }
+}
