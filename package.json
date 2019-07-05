@@ -1,6 +1,6 @@
 {
   "name": "@36node/bus-messenger",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Bus messenger sdk for javascript.",
   "repository": {
     "url": "36node/bus-messenger",
