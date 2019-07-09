@@ -31,12 +31,12 @@ export class Station extends Transform {
 
 export class TBoxStation extends Station {
   get name() {
-    return "tbox station";
+    return "Tbox";
   }
 }
 
-export class ExceptionStation extends Station {
+export class AlertStation extends Station {
   get name() {
-    return "tbox station";
+    return "Alert";
   }
 }

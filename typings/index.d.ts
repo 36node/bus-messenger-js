@@ -14,10 +14,10 @@ type TBoxData = {
   body: object;
 };
 
-type ExceptionData = {
+type AlertData = {
   ns: string;
   at: Date;
-  type: number; // 0x00 ~ 0x80 是报警， 0xa0 ~ 0xff 是异常  通过预定义好的 type 来区分报警和异常
+  type: number; // code 的前两位是 type，用type来区分 国标报警还是自定义报警，或者是系统预警
   code: number;
   level: number;
   line: string;
@@ -28,6 +28,7 @@ type ExceptionData = {
   vehicleNo: string;
   vehicleMileage: number;
   vehilceExpiredAt: Date;
+  data: Object;
 };
 
 type Push = (data: any) => void;
@@ -39,8 +40,8 @@ declare module "@36node/bus-messenger" {
     name: string;
   }
 
-  export class ExceptionStation extends Station {
-    constructor(handler: (data: ExceptionData, push: Push) => void);
+  export class AlertStation extends Station {
+    constructor(handler: (data: AlertData, push: Push) => void);
 
     name: string;
   }
