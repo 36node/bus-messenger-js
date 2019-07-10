@@ -2,8 +2,7 @@ import { KafkaConsumer, Producer } from "node-rdkafka";
 import { ObjectReadableMock, ObjectWritableMock } from "stream-mock";
 import { range } from "lodash";
 
-import Messenger from "./index";
-import { TBoxStation } from "./station";
+import Messenger, { Station, TBoxStation } from "./index";
 
 const messenger = new Messenger({
   "metadata.broker.list": "localhost:9092",
@@ -71,8 +70,33 @@ function wrapKafkaData(count) {
   });
 }
 
+function delay() {
+  return new Promise(resolve => setTimeout(resolve, Math.random() * 100));
+}
+
 describe("## Bus Messenger SDK", () => {
-  it("should receive tbox data", done => {
+  it("could handle data in async mode", done => {
+    const input = [1, 2, 3];
+    const reader = new ObjectReadableMock(input);
+    const writer = new ObjectWritableMock();
+
+    const tbox = new Station(async (data, push) => {
+      await delay();
+      push(data);
+    });
+
+    messenger
+      .pickup(reader)
+      .pass(tbox)
+      .deliver(writer);
+
+    writer.on("finish", () => {
+      expect(writer.data).toEqual(input);
+      done();
+    });
+  });
+
+  it("should receive tbox data from kafka", done => {
     const input = wrapKafkaData(1);
     const reader = new ObjectReadableMock(input);
     const writer = new ObjectWritableMock();

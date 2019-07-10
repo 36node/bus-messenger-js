@@ -27,7 +27,7 @@
     "lint": "sketch lint src",
     "preinstall": "echo 'please export $CPPFLAGS $LDFLAGS in readme'",
     "release": "standard-version",
-    "test:int": "sketch test --env=node"
+    "test": "sketch test --env=node"
   },
   "commitlint": {
     "extends": [

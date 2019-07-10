@@ -1,3 +1,5 @@
+import { Transform } from "stream";
+
 type TBoxData = {
   session: string;
   seq: number;
@@ -46,7 +48,7 @@ declare module "@36node/bus-messenger" {
     name: string;
   }
 
-  export class Station {
+  export class Station extends Transform {
     constructor(handler: () => {});
 
     name: string;
