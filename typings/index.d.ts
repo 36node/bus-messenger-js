@@ -24,13 +24,16 @@ type AlertData = {
   level: number;
   line: string;
   plate: string;
-  vehicle: string;
-  vehicleModel: string;
-  vehicleModelBrief: string;
-  vehicleNo: string;
-  vehicleMileage: number;
-  vehilceExpiredAt: Date;
-  data: Object;
+  vehicle: {
+    id: string;
+    model: string;
+    modelBrief: string;
+    customNo: string;
+    mileage: number;
+    expiredAt: Date;
+    location: object;
+    overall: object;
+  };
 };
 
 type Push = (data: any) => void;
