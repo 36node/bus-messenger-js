@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/36node/bus-messenger/compare/v0.0.4...v0.0.5) (2019-07-11)
+
+
+### Bug Fixes
+
+* async callback ([756e04a](https://github.com/36node/bus-messenger/commit/756e04a))
+* tbox data format ([b3fbfff](https://github.com/36node/bus-messenger/commit/b3fbfff))
+* test ([fde2431](https://github.com/36node/bus-messenger/commit/fde2431))
+* use Alert for alert and exception ([c6b5518](https://github.com/36node/bus-messenger/commit/c6b5518))
+
+
+
 ### [0.0.4](https://github.com/36node/bus-messenger/compare/v0.0.3...v0.0.4) (2019-07-05)
 
 
