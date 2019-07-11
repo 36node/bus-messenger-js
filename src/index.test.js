@@ -80,14 +80,14 @@ describe("## Bus Messenger SDK", () => {
     const reader = new ObjectReadableMock(input);
     const writer = new ObjectWritableMock();
 
-    const tbox = new Station(async (data, push) => {
+    const station = new Station(async (data, push) => {
       await delay();
       push(data);
     });
 
     messenger
       .pickup(reader)
-      .pass(tbox)
+      .pass(station)
       .deliver(writer);
 
     writer.on("finish", () => {
@@ -97,12 +97,12 @@ describe("## Bus Messenger SDK", () => {
   });
 
   it("should receive tbox data from kafka", done => {
-    const input = wrapKafkaData(1);
+    const count = 10;
+    const input = wrapKafkaData(count);
     const reader = new ObjectReadableMock(input);
     const writer = new ObjectWritableMock();
     reader.consumer = { on: jest.fn() };
     KafkaConsumer.createReadStream = jest.fn(() => reader);
-    Producer.createWriteStream = jest.fn(() => writer);
 
     const tbox = new TBoxStation((data, push) => {
       push(data);
@@ -111,10 +111,11 @@ describe("## Bus Messenger SDK", () => {
     messenger
       .from("in")
       .pass(tbox)
-      .to("out");
+      .deliver(writer);
 
     writer.on("finish", () => {
-      expect(writer.data).toEqual(input);
+      expect(writer.data.length).toBe(count);
+      expect(writer.data[0].vin).toBe("LZYTBGCW6J1044486");
       done();
     });
   });
