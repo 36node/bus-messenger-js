@@ -1,4 +1,4 @@
-import { KafkaConsumer, Producer } from "node-rdkafka";
+import { KafkaConsumer } from "node-rdkafka";
 import { ObjectReadableMock, ObjectWritableMock } from "stream-mock";
 import { range } from "lodash";
 
