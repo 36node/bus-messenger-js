@@ -7529,6 +7529,13 @@ jsx-ast-utils@^2.0.1:
     array-includes "^3.0.3"
     object.assign "^4.1.0"
 
+kafkajs@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/kafkajs/-/kafkajs-1.10.0.tgz#6576d0b8ccb4417b0f16bbb08dca64bf08b64965"
+  integrity sha512-af1kUKJrM3bIw2olGhjwhqHrVBVP9y79XRO/TAFE71dUzuVRrwoHJX8OQ3ebV0YZugA7J0oKHwW2DBY6A8BV0w==
+  dependencies:
+    long "^4.0.0"
+
 keyv@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.1.0.tgz#ecc228486f69991e49e9476485a5be1e8fc5c4d9"
@@ -7919,6 +7926,11 @@ loglevel@^1.4.1:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.3.tgz#77f2eb64be55a404c9fd04ad16d57c1d6d6b1280"
   integrity sha512-LoEDv5pgpvWgPF4kNYuIp0qqSJVWak/dML0RY74xlzMZiT9w77teNAwKYKWBTYjlokMirg+o3jBwp+vlLrcfAA==
+
+long@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/long/-/long-4.0.0.tgz#9a7b71cfb7d361a194ea555241c92f7468d5bf28"
+  integrity sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
@@ -8643,7 +8655,7 @@ node-pre-gyp@^0.12.0:
     semver "^5.3.0"
     tar "^4"
 
-node-rdkafka@^2.7.0:
+node-rdkafka@2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/node-rdkafka/-/node-rdkafka-2.7.0.tgz#3e96fc3dd31f28a7c4fea6277f943a88da84edc2"
   integrity sha512-pSO60jT0AC0eEzXlRxUoNpEp7nCdtglHMBJ2r5lP0y+TqXDAUrV1it1ZtXfi4yeKShksLdRfMI/jeLXWXMMpLA==
@@ -11577,7 +11589,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^6.3.3, rxjs@^6.4.0:
+rxjs@^6.3.3, rxjs@^6.4.0, rxjs@^6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.2.tgz#2e35ce815cd46d84d02a209fb4e5921e051dbec7"
   integrity sha512-HUb7j3kvb7p7eCUHE3FqjoDsC1xfZQ4AHFWfTKSpZ+sAhhz5X1WX0ZuUqWbzB2QhSLp3DoLUG+hMdEDKqWo2Zg==

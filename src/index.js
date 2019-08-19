@@ -1,5 +1,7 @@
 import { KafkaConsumer, Producer } from "node-rdkafka";
 import devnull from "dev-null";
+import { Kafka } from "kafkajs";
+import { Observable } from "rxjs";
 
 import { KafkaBuilder, KafkaParser } from "./lib";
 
@@ -21,6 +23,7 @@ const defaultKafkaConf = {
 export class Messenger {
   _stations = [];
   _stream;
+  _kafka;
 
   constructor(options = {}) {
     if (!options["metadata.broker.list"]) {
@@ -32,6 +35,61 @@ export class Messenger {
     }
 
     this._options = { ...defaultKafkaConf, ...options };
+    this._kafka = new Kafka({
+      clientId: this._options["group.id"],
+      brokers: this._options["metadata.broker.list"].split(","),
+    });
+  }
+
+  async createProducer(topic) {
+    const producer = this._kafka.producer();
+    await producer.connect();
+
+    return {
+      send: async (message, partitionKey) => {
+        await producer.send({
+          topic,
+          messages: [
+            {
+              key: partitionKey ? message[partitionKey] : undefined,
+              value: JSON.stringify(message),
+            },
+          ],
+        });
+      },
+      batchSend: async (messages, partitionKey) => {
+        await producer.send({
+          topic,
+          messages: messages.map(m => ({
+            key: partitionKey ? m[partitionKey] : undefined,
+            value: JSON.stringify(m),
+          })),
+        });
+      },
+    };
+  }
+
+  createObservable(topic) {
+    const consumer = this._kafka.consumer({
+      groupId: this._options["group.id"],
+    });
+
+    const run = async observer => {
+      await consumer.connect();
+      await consumer.subscribe({ topic, fromBeginning: false });
+
+      await consumer.run({
+        eachMessage: async ({ topic, partition, message }) => {
+          await observer.next(JSON.parse(message.value.toString()));
+        },
+      });
+    };
+
+    const observable = Observable.create(async observer => {
+      await run(observer);
+    });
+
+    return observable;
   }
 
   /**

@@ -1,4 +1,5 @@
 import { Transform } from "stream";
+import { Observable } from "rxjs";
 
 type TBoxData = {
   session: string;
@@ -60,6 +61,8 @@ declare module "@36node/bus-messenger" {
   export class Messenger {
     constructor();
 
+    async createProducer(topic: string) : { send: Function, batchSend: Function };
+    createObservable(topic: string) : Observable;
     from(topics: string | [string]): Messenger;
     pickup(readStream: ReadableStream): Messenger;
     pass(station: Station): Messenger;
