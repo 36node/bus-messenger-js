@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/36node/bus-messenger/compare/v0.0.6...v0.1.0) (2019-08-19)
+
+
+### Features
+
+* add producer and observable api ([#4](https://github.com/36node/bus-messenger/issues/4)) ([a52c4ac](https://github.com/36node/bus-messenger/commit/a52c4ac))
+
+
+
 ### [0.0.6](https://github.com/36node/bus-messenger/compare/v0.0.5...v0.0.6) (2019-07-11)
 
 
