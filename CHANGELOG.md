@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/36node/bus-messenger/compare/v0.1.0...v0.1.1) (2019-08-19)
+
+
+### Bug Fixes
+
+* build ([#6](https://github.com/36node/bus-messenger/issues/6)) ([706b986](https://github.com/36node/bus-messenger/commit/706b986))
+
+
+
 ## [0.1.0](https://github.com/36node/bus-messenger/compare/v0.0.6...v0.1.0) (2019-08-19)
 
 
