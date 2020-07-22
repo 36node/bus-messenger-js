@@ -113,8 +113,11 @@ export class Messenger {
     });
 
     stream.consumer.on("event.error", function(err) {
-      console.log("messenger from stream.consumer error");
-      console.error(err);
+      if (err) {
+        console.error("messenger from stream.consumer error");
+        console.error(err);
+      }
+      process.exit(1);
     });
 
     return this.pickup(stream.pipe(new KafkaParser()));
