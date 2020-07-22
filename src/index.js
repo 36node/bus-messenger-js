@@ -60,7 +60,7 @@ export class Messenger {
       batchSend: async (messages, partitionKey) => {
         await producer.send({
           topic,
-          messages: messages.map(m => ({
+          messages: messages.map((m) => ({
             key: partitionKey ? m[partitionKey] : undefined,
             value: JSON.stringify(m),
           })),
@@ -74,7 +74,7 @@ export class Messenger {
       groupId: this._options["group.id"],
     });
 
-    const run = async observer => {
+    const run = async (observer) => {
       await consumer.connect();
       await consumer.subscribe({ topic, fromBeginning: false });
 
@@ -85,7 +85,7 @@ export class Messenger {
       });
     };
 
-    const observable = Observable.create(async observer => {
+    const observable = Observable.create(async (observer) => {
       await run(observer);
     });
 
@@ -104,12 +104,16 @@ export class Messenger {
       { ...defaultStreamConf, topics }
     );
 
-    stream.on("error", function(err) {
-      if (err) console.log(err);
+    stream.on("error", function (err) {
+      if (err) {
+        console.log("messenger from stream error");
+        console.error(err);
+      }
       process.exit(1);
     });
 
-    stream.consumer.on("event.error", function(err) {
+    stream.consumer.on("event.error", function (err) {
+      console.log("messenger from stream.consumer error");
       console.error(err);
     });
 
@@ -128,8 +132,11 @@ export class Messenger {
       { ...defaultStreamConf, topic }
     );
 
-    stream.on("error", function(err) {
-      if (err) console.log(err);
+    stream.on("error", function (err) {
+      if (err) {
+        console.log("messenger to stream error");
+        console.error(err);
+      }
       process.exit(1);
     });
 
